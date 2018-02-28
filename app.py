@@ -68,16 +68,17 @@ def upload_image(image):
 
 
 def random_imgur_url():
-    base_url = 'http://i.imgur.com/'
-    extension = '.jpg'
+    base_url = 'http://i.imgur.com'
+    extensions = ['jpg', 'png', 'gif']
     id_symbols = string.digits + string.ascii_letters
 
     max_attempts = 100
 
     for _ in range(max_attempts):
         image_id = ''.join(random.choice(id_symbols) for _ in range(5))
-        image_url = base_url + image_id + extension
-        # Test if valid image
+        image_extension = random.choice(extensions)
+        image_url = '{}/{}.{}'.format(base_url, image_id, image_extension)
+        # Test if valid image url
         img = urlopen(image_url).read()
         if len(img) != 503:     # length of 'removed.png'
             return image_url
