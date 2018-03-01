@@ -48,6 +48,10 @@ def process_command(data):
             image_url = random_imgur_url()
             send_message(image_url)
 
+    elif command == 'eval':
+        msg = eval(body)
+        send_message(msg)
+
 
 def send_message(msg):
     url = 'https://api.groupme.com/v3/bots/post'
