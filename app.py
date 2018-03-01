@@ -52,7 +52,10 @@ def process_command(data):
         send_message(body)
 
     elif command == 'eval':
-        msg = str(eval(body))
+        try:
+            msg = str(eval(body))
+        except Exception as e:
+            msg = str(e)
         send_message(msg)
 
 
