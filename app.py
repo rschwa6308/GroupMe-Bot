@@ -28,6 +28,8 @@ def process_command(data):
     command = data['text'][1:].split(' ')[0]
     body = data['text'][1+len(command):].strip()
 
+    print(command, body)
+
     if command == 'joke':
         # send_message('Where did Tigger look for Pooh?')
         # sleep(2)
