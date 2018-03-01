@@ -55,7 +55,7 @@ def process_command(data):
         try:
             msg = str(eval(body))
         except Exception as e:
-            msg = str(e)
+            msg = 'Error: {}'.format(e)
         send_message(msg)
 
 
