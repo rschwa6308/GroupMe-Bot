@@ -60,6 +60,9 @@ def process_command(data):
 
 
 def send_message(msg):
+    if len(msg) > 1000:
+        msg = msg[:995] + '...'
+
     url = 'https://api.groupme.com/v3/bots/post'
     data = {
         'bot_id': os.getenv('GROUPME_BOT_ID'),
