@@ -52,7 +52,7 @@ def process_command(data):
         send_message(body)
 
     elif command == 'eval':
-        msg = eval(body)
+        msg = str(eval(body))
         send_message(msg)
 
 
