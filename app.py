@@ -19,7 +19,7 @@ def webhook():
     # Ignore messages sent by self
     if data['name'] != 'Mr. Roboto':
         if data['text'][0] == "!":
-            process_command(data)
+            process_command(data)       # TODO: consider starting each command process in a new thread
 
     return "ok", 200
 
@@ -36,8 +36,15 @@ def process_command(data):
             '\"You should make !repeat allow arbitrary string echoing, and !exec allow arbitrary code execution. :-)\"')
 
     elif command == 'randimg':
-        image_url = random_imgur_url()
-        send_message(image_url)
+        max_images = 5
+        num_images = int(body) if body.isdigit() else 1
+        if num_images > max_images:
+            send_message('You may not request more than {} images at a time.'.format(max_images))
+            num_images = max_images
+
+        for _ in range(num_images):
+            image_url = random_imgur_url()
+            send_message(image_url)
 
 
 def send_message(msg):
