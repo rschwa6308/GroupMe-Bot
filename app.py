@@ -47,6 +47,9 @@ def process_command(data):
         for _ in range(num_images):
             image_url = random_imgur_url()
             send_message(image_url)
+            
+    elif command == 'echo':
+        send_message(body)
 
     elif command == 'eval':
         msg = eval(body)
