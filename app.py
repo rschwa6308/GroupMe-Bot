@@ -8,7 +8,10 @@ import json
 from time import sleep
 import string
 import random
-from bs4 import BeautifulSoup as bs
+try:
+    from bs4 import BeautifulSoup as bs
+except:
+    pass
 
 app = Flask(__name__)
 
