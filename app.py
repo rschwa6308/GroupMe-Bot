@@ -8,6 +8,7 @@ import json
 from time import sleep
 import string
 import random
+import BeautifulSoup as bs
 
 app = Flask(__name__)
 
@@ -57,6 +58,29 @@ def process_command(data):
         except Exception as e:
             msg = 'Error: {}'.format(e)
         send_message(msg)
+
+    elif command == 'define':
+        word = body
+        url = "http://www.dictionary.com/browse/{0}?s=t".format(word)
+        print("url: " + url)
+        html = urlopen(url)
+        soup = bs(html, "html.parser")
+        definitions = soup.findAll("div", {"class": "def-content"})
+        msg = definitions[0].text
+        send_message(msg)
+
+    # elif initial.lower().startswith("urban definition of"):
+    #     word = initial[len("urban definition of") + 1:].replace(" ", "+")
+    #     url = "http://www.urbandictionary.com/define.php?term={0}".format(word)
+    #     print("url: " + url)
+    #     html = urllib.request.urlopen(url)
+    #     soup = bs(html, "html.parser")
+    #     definitions = soup.findAll("div", {"class": "meaning"})
+    #     for d in definitions:
+    #         say(d.text + " Would you like to hear another definition?")
+    #         answer = get_speech_google()
+    #         if not any(a in answer.lower() for a in affirmatives):
+    #             break
 
 
 def send_message(msg):
