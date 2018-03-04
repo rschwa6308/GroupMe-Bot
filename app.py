@@ -10,8 +10,8 @@ import string
 import random
 try:
     from bs4 import BeautifulSoup as bs
-except:
-    pass
+except Exception as e:
+    print(e)
 
 app = Flask(__name__)
 
@@ -22,6 +22,7 @@ def webhook():
 
     # Ignore messages sent by self
     if data['name'] != 'Mr. Roboto':
+        send_message(str(data))
         if data['text'][0] == "!":
             process_command(data)       # TODO: consider starting each command process in a new thread
 
