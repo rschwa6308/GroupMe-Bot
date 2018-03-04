@@ -93,7 +93,7 @@ def process_command(data):
     #             break
 
     elif command == 'curse':
-        target = body.split(' ')[0]
+        target = body
         cursed.append(target)
         send_message('{} has been cursed!'.format(target))
 
