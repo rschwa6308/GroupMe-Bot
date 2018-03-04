@@ -15,6 +15,8 @@ except Exception as e:
 
 app = Flask(__name__)
 
+cursed = []
+
 
 @app.route('/', methods=['POST'])
 def webhook():
@@ -22,9 +24,13 @@ def webhook():
 
     # Ignore messages sent by self
     if data['name'] != 'Mr. Roboto':
-        send_message(str(data))
+        # send_message(str(data))
         if data['text'][0] == "!":
             process_command(data)       # TODO: consider starting each command process in a new thread
+
+        for name in cursed:
+            if data['name'] == name:
+                send_message('May your soul burn forever in fiery torment!')
 
     return "ok", 200
 
@@ -85,6 +91,17 @@ def process_command(data):
     #         answer = get_speech_google()
     #         if not any(a in answer.lower() for a in affirmatives):
     #             break
+
+    elif command == 'curse':
+        target = body.split(' ')[0]
+        cursed.append(target)
+
+    elif command == 'repent':
+        target = data['name']
+        if target in cursed:
+            cursed.remove(target)
+        send_message('You have been forgiven.')
+
 
 
 def send_message(msg):
