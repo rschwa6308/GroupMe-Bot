@@ -36,10 +36,11 @@ def webhook():
         if 'club today?' in data['text']:
             today = datetime.datetime.today()
             if today.weekday() == 4:
-                send_message('yes (testing)')
-                start_time = datetime.time(14, 15)
-                send_message(str(start_time))
-                start_datetime = datetime.combine(today, start_time)
+               
+                start_datetime = datetime.datetime.today()
+                start_datetime.hour = 14
+                start_datetime.minute = 15
+                start_datetime.second = 0
                 send_message(str(today))
                 send_message(str(today.time()))
                 timeuntil = start_datetime - today
