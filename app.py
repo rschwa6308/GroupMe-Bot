@@ -39,9 +39,10 @@ def webhook():
                 send_message('yes (testing)')
                 start_time = datetime.time(14, 15)
                 send_message(str(start_time))
+                start_datetime = datetime.combine(today, start_time)
                 send_message(str(today))
                 send_message(str(today.time()))
-                timeuntil = start_time - today.time()
+                timeuntil = start_datetime - today
                 send_message(str(timeuntil))
                 send_message('Yes! Coding Club starts in {} hours, {} minutes, {} seconds!'.format(timeuntil.hour, timeuntil.minute, timeuntil.second))
             else:
