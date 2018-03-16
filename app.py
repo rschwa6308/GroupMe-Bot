@@ -8,10 +8,12 @@ import json
 from time import sleep
 import string
 import random
+import datetime
 try:
     from bs4 import BeautifulSoup as bs
 except Exception as e:
     print(e)
+
 
 app = Flask(__name__)
 
@@ -28,9 +30,12 @@ def webhook():
         if data['text'][0] == "!":
             process_command(data)       # TODO: consider starting each command process in a new thread
 
-        for name in cursed:
-            if data['name'] == name:
-                send_message('May your soul burn forever in fiery torment!')
+        if data['name'] in cursed:
+            send_message('May your soul burn forever in fiery torment!')
+        
+        if 'club today?' in data['text']:
+            if datetime.datetime.today().weekday() == 4:
+                send_message('Yes! Current Datetime {}'.format(datetime.datetime.today()))
 
     return "ok", 200
 
