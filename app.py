@@ -36,6 +36,8 @@ def webhook():
         if 'club today?' in data['text']:
             if datetime.datetime.today().weekday() == 4:
                 send_message('Yes! Current Datetime {}'.format(datetime.datetime.today()))
+            else:
+                send_message('No!!!!!!!!!!!!!!!!!!!')
 
     return "ok", 200
 
