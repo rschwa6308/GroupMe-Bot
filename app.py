@@ -37,7 +37,9 @@ def webhook():
             today = datetime.datetime.today()
             if today.weekday() == 4:
                 send_message('yes (testing)')
-                timeuntil = today.time() - datetime.time(14, 15)
+                start_time = datetime.time(14, 15)
+                send_message(str(start_time))
+                timeuntil = start_time - today.time()
                 send_message(str(timeuntil))
                 send_message('Yes! Coding Club starts in {} hours, {} minutes, {} seconds!'.format(timeuntil.hour, timeuntil.minute, timeuntil.second))
             else:
