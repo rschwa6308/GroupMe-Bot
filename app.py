@@ -37,10 +37,7 @@ def webhook():
             today = datetime.datetime.today()
             if today.weekday() == 4:
                 send_message("Yes!")
-                start_datetime = datetime.datetime.today()
-                start_datetime.replace(hour=14)
-                start_datetime.replace(minute=15)
-                start_datetime.replace(second=0)
+                start_datetime = today.replace(hour=14, minute=15, second=0)
                 send_message(str(today))
                 send_message(str(today.time()))
                 timeuntil = start_datetime - today
