@@ -36,16 +36,13 @@ def webhook():
         if 'club today?' in data['text']:
             today = datetime.datetime.today()
             if today.weekday() == 4:
-                send_message("Friday")
-                start_datetime = today.replace(hour=19, minute=15, second=0)    # adjusted for timezone
-                # send_message(str(today))
-                # send_message(str(today.time()))
+                start_datetime = today.replace(hour=18, minute=15, second=0)    # adjusted for timezone
                 if start_datetime > today:
                     timeuntil = start_datetime - today
                     hours, remainder = divmod(timeuntil.seconds, 3600)
                     minutes, seconds = divmod(remainder, 60)
                     send_message(str(timeuntil))
-                    send_message('Yes! Coding Club starts in {} hours, {} minutes, {} seconds!'.format(hours, minutes, seconds))
+                    send_message('Yes! Coding Club starts in {} hours, {} minutes, and {} seconds!'.format(hours, minutes, seconds))
                 else:
                     send_message('It already started!')
             else:
