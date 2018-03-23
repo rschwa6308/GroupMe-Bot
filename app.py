@@ -37,7 +37,7 @@ def webhook():
             today = datetime.datetime.today()
             if today.weekday() == 4:
                 send_message("Friday")
-                start_datetime = today.replace(hour=18, minute=15, second=0)    # adjusted for timezone
+                start_datetime = today.replace(hour=19, minute=15, second=0)    # adjusted for timezone
                 # send_message(str(today))
                 # send_message(str(today.time()))
                 if start_datetime > today:
